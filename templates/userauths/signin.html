@@ -1,5 +1,3 @@
-
-
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
@@ -15,31 +13,32 @@
                     </div>
                     <div class="col-xl-5">
                         <div class="section-text text-center">
-                            <h5 class="sub-title">Account</h5>
-                            <h2 class="title">Welcome to Fast Payment</h2>
-                            <p class="dont-acc">Already have an account? <a href="{% url 'sign_in' %}">Login</a></p>
+                            <h5 class="sub-title">Welcome to Fast Payment</h5>
+                            <h2 class="title">Sign In</h2>
+                            <p class="dont-acc">Don't have an account yet? <a href="{% url 'sign_up' %}">Sign Up</a></p>
                             <!-- <div class="reg-google">
                                 <a href="javascript:void(0)"><i class="fab fa-google"></i>Sign up with Google</a>
                             </div>
                             <span class="or">Or Continue With</span> -->
                         </div>
+
+                        {% if messages %}
+                            {% for message in messages %}
+                                <strong>{{ message }}</strong>
+                            {% endfor %}
+                        {% endif %}
+
                         <form method="POST">
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-12">
                                     <div class="single-input">
-                                        {{form.username}}
+                                        <input type="text" required name="email" id="logemail" placeholder="Enter Your Email">
                                     </div>
                                     <div class="single-input">
-                                        {{form.email}}
+                                        <input type="password" required name="password" id="logemail" placeholder="Enter Your Password">
                                     </div>
-                                    <div class="single-input">
-                                        {{form.password1}}
-                                    </div>
-                                    <div class="single-input">
-                                        {{form.password2}}
-                                    </div>
-                                    <button class="cmn-btn w-100" type="submit">Sign Up</button>
+                                    <button class="cmn-btn w-100" type="submit">Login</button>
                                 </div>
                             </div>
                         </form>
@@ -49,4 +48,4 @@
         </div>
     </section>
     <!-- Login Reg end -->
- {% endblock content %}
+{% endblock %}
